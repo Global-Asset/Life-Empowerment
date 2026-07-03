@@ -1,0 +1,36 @@
+name: Create builds
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    name: Run EAS Cloud Builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗️ Check out repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 🚀 Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🤖 Build Android App
+        run: eas build --platform android --profile production --non-interactive
+
+      - name: 🍏 Build iOS App
+        run: eas build --platform ios --profile production --non-interactive
+        
