@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Efikcoin Wallet",
+    "slug": "efikcoin-wallet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f172a"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.efikcoin.wallet",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0f172a"
+      },
+      "package": "com.efikcoin.wallet"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "react-native-keychain",
+        {
+          "keychainName": "EfikcoinWallet",
+          "sharedPreferencesName": "EfikcoinWallet"
+        }
+      ]
+    ]
+  }
+}
+
