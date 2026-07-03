@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Efikcoin Wallet",
-    "slug": "efikcoin-wallet",
+    "slug": "efikcoin-wallet-efc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -37,4 +37,3 @@
     ]
   }
 }
-
