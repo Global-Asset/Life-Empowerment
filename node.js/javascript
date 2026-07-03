@@ -1,0 +1,57 @@
+const { ethers } = require("ethers");
+
+// 1. Connect to BNB Smart Chain RPC
+const RPC_URL = "https://bsc-dataseed.binance.org/"; 
+const provider = new ethers.JsonRpcProvider(RPC_URL);
+
+// 2. Efikcoin (EFC) Contract Details
+const EFC_CONTRACT_ADDRESS = "0x677Ce9CBa67f7484ea951a12897CE780cFd8fED1";
+const EFC_ABI = [
+    "function balanceOf(address owner) view returns (uint256)",
+    "function transfer(address to, uint256 amount) returns (bool)",
+    "function decimals() view returns (uint8)"
+];
+
+/**
+ * Creates a brand new self-custodial wallet locally
+ */
+function createNewWallet() {
+    const wallet = ethers.Wallet.createRandom();
+    console.log("=== NEW WALLET CREATED LOCALLY ===");
+    console.log("Mnemonic (Seed Phrase):", wallet.mnemonic.phrase);
+    console.log("Private Key:", wallet.privateKey);
+    console.log("Public Address:", wallet.address);
+    return wallet;
+}
+
+/**
+ * Checks the EFC balance of an address
+ */
+async function getEfcBalance(userAddress) {
+    const contract = new ethers.Contract(EFC_CONTRACT_ADDRESS, EFC_ABI, provider);
+    const decimals = await contract.decimals();
+    const rawBalance = await contract.balanceOf(userAddress);
+    
+    // Format from Wei to readable units
+    const formattedBalance = ethers.formatUnits(rawBalance, decimals);
+    console.log(`Balance for ${userAddress}: ${formattedBalance} EFC`);
+}
+
+/**
+ * Signs and sends EFC to another address
+ */
+async function sendEfc(privateKey, toAddress, amountTokens) {
+    const wallet = new ethers.Wallet(privateKey, provider);
+    const contract = new ethers.Contract(EFC_CONTRACT_ADDRESS, EFC_ABI, wallet);
+    
+    const decimals = await contract.decimals();
+    const amountInWei = ethers.parseUnits(amountTokens.toString(), decimals);
+    
+    console.log(`Sending ${amountTokens} EFC to ${toAddress}...`);
+    const tx = await contract.transfer(toAddress, amountInWei);
+    
+    console.log("Transaction Hash:", tx.hash);
+    await tx.wait();
+    console.log("Transaction Confirmed Successfully!");
+      }
+
