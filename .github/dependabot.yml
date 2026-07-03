@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "eas-build-android:production" # Triggers your automated Android build
+      - "eas-build-ios:production"     # Triggers your automated iOS build
+      
