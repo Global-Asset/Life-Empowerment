@@ -1,0 +1,1 @@
+mkdir -p .eas/workflows && touch .eas/workflows/create-production-builds.yml
