@@ -1,0 +1,11 @@
+├── .github/
+│   └── workflows/
+│       └── build.yml       <-- Your GitHub action file
+├── assets/
+│   ├── icon.png            <-- Must exist!
+│   ├── splash.png          <-- Must exist!
+│   └── adaptive-icon.png   <-- Must exist!
+├── app.json                <-- The file from the code block above
+├── package.json            <-- Your dependency list
+└── eas.json                <-- Your build profiles
+
