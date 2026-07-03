@@ -137,4 +137,3 @@ const styles = StyleSheet.create({
   actionBtn: { flex: 0.48, paddingVertical: 14, borderRadius: 8, alignItems: 'center' },
   buttonText: { color: '#0f172a', fontWeight: 'bold', fontSize: 16 }
 });
-    
