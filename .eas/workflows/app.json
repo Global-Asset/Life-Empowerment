@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Efikcoin wallet efc",
+    "slug": "efikcoin-wallet-efc",
+    "extra": {
+      "eas": {
+        "projectId": "d7eb3490-68ff-4fc5-85ca-ca15d42c1b9c"
+      }
+    }
+  }
+}
