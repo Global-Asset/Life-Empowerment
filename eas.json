@@ -11,9 +11,6 @@
       "distribution": "internal"
     },
     "production": {
-      "ios": {
-        "simulator": false
-      },
       "android": {
         "buildType": "app-bundle"
       }
@@ -23,4 +20,3 @@
     "production": {}
   }
 }
-
