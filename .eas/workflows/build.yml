@@ -1,0 +1,20 @@
+name: Build Wallet
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  production_build:
+    name: Production Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run EAS Build
+        uses: expo/expo-github-action/preview@v8
+        with:
+          command: eas build --platform android --profile production --non-interactive
+          token: ${{ secrets.EXPO_TOKEN }}
+          
