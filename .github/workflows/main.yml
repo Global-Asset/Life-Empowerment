@@ -1,0 +1,33 @@
+name: Build Efikcoin Wallet
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # This allows you to trigger it manually with a button!
+
+jobs:
+  build_android:
+    name: Compile Android App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: Install Global EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Install Project Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Trigger Production EAS Build
+        run: eas build --platform android --profile production --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
